@@ -35,7 +35,7 @@ public class ChessPiece {
 
     @Override
     public String toString() {
-        String str = "";
+        String str = "?";
         switch (type) {
             case KING -> {str = " K";}
             case QUEEN -> {str= " Q";}
