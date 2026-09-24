@@ -33,6 +33,69 @@ public class PieceMoves {
         };
         return straightMoves(movement);
     }
+    public Collection<ChessMove> getBishopMoves() {
+        BiFunction<Direction, Integer, ChessMove> movement = (dir, num) -> {
+            switch (dir) {
+                case NORTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()+num), null);}
+                case NORTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()-num), null);}
+                case SOUTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()+num), null);}
+                case SOUTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()-num), null);}
+            }
+            return null;
+        };
+        return straightMoves(movement);
+    }
+
+    public Collection<ChessMove> getQueenMoves() {
+        BiFunction<Direction, Integer, ChessMove> movement = (dir, num) -> {
+            switch (dir) {
+                case NORTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()), null);}
+                case SOUTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()), null);}
+                case EAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow(), pos.getColumn()+num), null);}
+                case WEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow(), pos.getColumn()-num), null);}
+                case NORTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()+num), null);}
+                case NORTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()-num), null);}
+                case SOUTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()+num), null);}
+                case SOUTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()-num), null);}
+            }
+            return null;
+        };
+        return straightMoves(movement);
+    }
+    public Collection<ChessMove> getKnightMoves() {
+        BiFunction<Direction, Integer, ChessMove> movement = (dir, num) -> {
+            if (num > 1) return null;
+            switch (dir) {
+                case NORTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+2, pos.getColumn()+1), null);}
+                case SOUTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-2, pos.getColumn()+1), null);}
+                case EAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+2, pos.getColumn()-1), null);}
+                case WEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-2, pos.getColumn()-1), null);}
+                case NORTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+1, pos.getColumn()+2), null);}
+                case NORTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+1, pos.getColumn()-2), null);}
+                case SOUTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-1, pos.getColumn()+2), null);}
+                case SOUTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-1, pos.getColumn()-2), null);}
+            }
+            return null;
+        };
+        return straightMoves(movement);
+    }
+    public Collection<ChessMove> getKingMoves() {
+        BiFunction<Direction, Integer, ChessMove> movement = (dir, num) -> {
+            if (num > 1) return null;
+            switch (dir) {
+                case NORTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()), null);}
+                case SOUTH -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()), null);}
+                case EAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow(), pos.getColumn()+num), null);}
+                case WEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow(), pos.getColumn()-num), null);}
+                case NORTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()+num), null);}
+                case NORTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()+num, pos.getColumn()-num), null);}
+                case SOUTHEAST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()+num), null);}
+                case SOUTHWEST -> {return new ChessMove(pos, new ChessPosition(pos.getRow()-num, pos.getColumn()-num), null);}
+            }
+            return null;
+        };
+        return straightMoves(movement);
+    }
     private Collection<ChessMove> straightMoves(BiFunction<Direction, Integer, ChessMove> movement) {
         List<ChessMove> moveList = new ArrayList<ChessMove>();
         for (Direction dir : Direction.values()) {
